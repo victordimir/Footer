@@ -7,12 +7,17 @@
 //
 
 import UIKit
-let duration = Double(0.55)
+let duration = Double(0.1)
 let sideViewDamping = CGFloat(0.87)
 let sideViewVelocity = CGFloat(10)
 let centerViewDamping = CGFloat(1.0)
 let centerViewVelocity = CGFloat(8)
 let footer = CGFloat(75)
+
+protocol LTBounceSheetDelegate
+{
+    func onSheetAnimationEnded()
+}
 
 class LTBounceSheet: UIView {
 
@@ -26,6 +31,8 @@ class LTBounceSheet: UIView {
     private var counter: Int!
     private var height: CGFloat!
     private let screenHeight: CGFloat!
+    
+    private var mDelegate:LTBounceSheetDelegate!
     
     init(height: CGFloat, bgColor: UIColor) {
         
@@ -73,7 +80,6 @@ class LTBounceSheet: UIView {
         
         if gesture.direction == UISwipeGestureRecognizerDirection.Up {
             
-        
             self.show()
             
         } else {
@@ -153,7 +159,7 @@ class LTBounceSheet: UIView {
             }) { (finished: Bool) -> Void in
                 
                 self.complete()
-
+                self.mDelegate.onSheetAnimationEnded()
         }
     }
     func animateContentViewToHeight(height: CGFloat) {
@@ -220,43 +226,15 @@ class LTBounceSheet: UIView {
             path.closePath()
             path.fill()
         }
-        
-        
     }
     
+    func setDelegate(delegate:LTBounceSheetDelegate)
+    {
+        mDelegate = delegate
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
+    func getFooter()->CGFloat
+    {
+        return footer;
+    }
 }

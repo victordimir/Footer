@@ -12,7 +12,7 @@ let SHEET_COLOR = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alp
 
 let DUMMYIMG_URL = "http://dummyimage.com/100x100/000000/fff.png&text="
 
-class ViewController: UIViewController, UIScrollViewDelegate {
+class ViewController: UIViewController, UIScrollViewDelegate, LTBounceSheetDelegate {
 
     var sheet: LTBounceSheet!
     var shown: Bool = false
@@ -26,8 +26,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var mProfileRatingView :JWStarRatingView!
     @IBOutlet var m2ndRowScrView :UIScrollView!
     @IBOutlet var m3rdRowScrView :UIScrollView!
+    @IBOutlet var mBadgePreview :UIView!
+    @IBOutlet var mBadgePreviewImg1 :UIImageView!
+    @IBOutlet var mBadgePreviewImg2 :UIImageView!
+    @IBOutlet var mBadgePreviewImg3 :UIImageView!
     @IBOutlet var mPageControl :UIPageControl!
     @IBOutlet var mToggleButton :UIButton!
+    @IBOutlet var mMessageView: UIView!
     
     //initialize 2nd scrollview
     func setUp2ndScrollView()
@@ -95,14 +100,31 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
-        self.sheet = LTBounceSheet(height: 250, bgColor: SHEET_COLOR)
+        self.sheet = LTBounceSheet(height: mFooterView.frame.size.height, bgColor: SHEET_COLOR)
         mFooterView.frame = CGRectMake(0, 0, mFooterView.frame.size.width, mFooterView.frame.size.height);
         self.sheet.addView(mFooterView)
         
         mProfileImageView.setImageWithURL(NSURL(string: DUMMYIMG_URL + "P"))
         mProfileImageView.layer.cornerRadius = mProfileImageView.frame.size.width/2
         mProfileImageView.layer.masksToBounds = true;
+        
+        mBadgePreviewImg1.setImageWithURL(NSURL(string: DUMMYIMG_URL + "1"))
+        mBadgePreviewImg1.layer.cornerRadius = mBadgePreviewImg1.frame.size.width/2
+        mBadgePreviewImg1.layer.masksToBounds = true;
 
+        mBadgePreviewImg2.setImageWithURL(NSURL(string: DUMMYIMG_URL + "2"))
+        mBadgePreviewImg2.layer.cornerRadius = mBadgePreviewImg2.frame.size.width/2
+        mBadgePreviewImg2.layer.masksToBounds = true;
+
+        mBadgePreviewImg3.setImageWithURL(NSURL(string: DUMMYIMG_URL + "3"))
+        mBadgePreviewImg3.layer.cornerRadius = mBadgePreviewImg3.frame.size.width/2
+        mBadgePreviewImg3.layer.masksToBounds = true;
+
+        
+        sheet.setDelegate(self)
+        
+        mMessageView.center = CGPointMake(CGFloat(160),  self.view.frame.size.height - sheet.getFooter() - mMessageView.frame.height / 2 )
+        
         setUp2ndScrollView()
         setUp3rdScrollView()
     }
@@ -111,22 +133,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     {
         var selectedInd:CGFloat = CGFloat(sender.currentPage)
         m3rdRowScrView.contentOffset = CGPointMake(selectedInd * m3rdRowScrView.frame.size.width, 0)
-    }
-    
-    @IBAction func onShowSheet(sender:UIButton)
-    {
-        if shown == true
-        {
-            sheet.hide();
-            mToggleButton.setTitle("+", forState: UIControlState.Normal)
-            shown = false
-        }
-        else
-        {
-            sheet.show();
-            mToggleButton.setTitle("-", forState: UIControlState.Normal)
-            shown = true
-        }
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView)
@@ -183,5 +189,38 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         m2ndRowScrView.contentSize = CGSizeMake(centerX - 30, m2ndRowScrView.frame.size.height)
 
+    }
+    
+    //delegate function for sheet animation completion
+    func onSheetAnimationEnded()
+    {
+        if shown == true
+        {
+            mBadgePreview.hidden = false
+            mProfileRatingView.hidden = true
+            mToggleButton.hidden = false
+            shown = false
+            mMessageView.center = CGPointMake(CGFloat(160),  self.view.frame.size.height - sheet.getFooter() - mMessageView.frame.height / 2 )
+        }
+        else
+        {
+            mBadgePreview.hidden = true
+            mProfileRatingView.hidden = false
+            mToggleButton.hidden = true
+            shown = true
+            mMessageView.center = CGPointMake(CGFloat(160),  sheet.center.y - sheet.frame.size.height / 2 - mMessageView.frame.height / 2 )
+        }
+    }
+    
+    @IBAction func onShowSheet(sender:UIButton)
+    {
+        if shown == true
+        {
+            sheet.hide();
+        }
+        else
+        {
+            sheet.show();
+        }
     }
 }

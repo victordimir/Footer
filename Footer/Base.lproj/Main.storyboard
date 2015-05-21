@@ -12,7 +12,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="AtK-4X-Tvz">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" id="AtK-4X-Tvz">
                                 <rect key="frame" x="0.0" y="64" width="320" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
@@ -58,15 +58,24 @@
                                         <rect key="frame" x="0.0" y="160" width="320" height="63"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </scrollView>
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" id="X8n-hz-jry" customClass="JWStarRatingView" customModule="Footer">
-                                        <rect key="frame" x="89" y="22" width="159" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view contentMode="scaleToFill" id="Gw2-s9-cgD">
+                                        <rect key="frame" x="90" y="16" width="160" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="CNc-28-R4Z">
+                                                <rect key="frame" x="10" y="2" width="40" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="rl3-Qs-EfA">
+                                                <rect key="frame" x="60" y="2" width="40" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="0En-pT-Le9">
+                                                <rect key="frame" x="110" y="2" width="40" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="starCount">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="VpE-Qf-J3B">
                                         <rect key="frame" x="141" y="216" width="39" height="37"/>
@@ -88,6 +97,16 @@
                                             <action selector="onShowSheet:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="75s-Hw-Ksd"/>
                                         </connections>
                                     </button>
+                                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" id="X8n-hz-jry" customClass="JWStarRatingView" customModule="Footer">
+                                        <rect key="frame" x="90" y="16" width="160" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="starCount">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -102,7 +121,12 @@
                     <connections>
                         <outlet property="m2ndRowScrView" destination="Hcl-d3-VqN" id="LpT-ZO-tb2"/>
                         <outlet property="m3rdRowScrView" destination="Qqs-NV-HZE" id="YsQ-ue-we2"/>
+                        <outlet property="mBadgePreview" destination="Gw2-s9-cgD" id="svJ-Lb-vCD"/>
+                        <outlet property="mBadgePreviewImg1" destination="CNc-28-R4Z" id="KqC-UV-One"/>
+                        <outlet property="mBadgePreviewImg2" destination="rl3-Qs-EfA" id="uGY-3D-Qc7"/>
+                        <outlet property="mBadgePreviewImg3" destination="0En-pT-Le9" id="107-qK-sHt"/>
                         <outlet property="mFooterView" destination="AtK-4X-Tvz" id="ffw-zT-EQG"/>
+                        <outlet property="mMessageView" destination="q5G-gP-dyw" id="3PR-kA-gbt"/>
                         <outlet property="mPageControl" destination="VpE-Qf-J3B" id="f47-ow-pfF"/>
                         <outlet property="mProfileImageView" destination="fGo-kU-kbi" id="Pyv-Ls-VRc"/>
                         <outlet property="mProfileRatingView" destination="X8n-hz-jry" id="BFN-1J-ofn"/>
