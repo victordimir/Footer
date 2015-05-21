@@ -54,11 +54,11 @@ class LTBounceSheet: UIView {
         
         var swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeUp.direction = UISwipeGestureRecognizerDirection.Up
-        self.addGestureRecognizer(swipeUp)
+        self.contentView.addGestureRecognizer(swipeUp)
         
         var swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
-        self.addGestureRecognizer(swipeDown)
+        self.contentView.addGestureRecognizer(swipeDown)
         
         self.sideHelperView = UIView(frame: CGRectMake(0, height-footer, 0, 0))
         self.sideHelperView.backgroundColor = UIColor.blackColor()
