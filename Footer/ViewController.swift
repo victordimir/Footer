@@ -123,7 +123,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, LTBounceSheetDeleg
         
         sheet.setDelegate(self)
         
-        mMessageView.center = CGPointMake(CGFloat(160),  self.view.frame.size.height - sheet.getFooter() - mMessageView.frame.height / 2 )
+        mMessageView.center = CGPointMake(CGFloat(self.view.frame.size.width / 2),  self.view.frame.size.height - sheet.getFooter() - mMessageView.frame.height / 2 )
         
         setUp2ndScrollView()
         setUp3rdScrollView()
@@ -200,7 +200,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, LTBounceSheetDeleg
             mProfileRatingView.hidden = true
             mToggleButton.hidden = false
             shown = false
-            mMessageView.center = CGPointMake(CGFloat(160),  self.view.frame.size.height - sheet.getFooter() - mMessageView.frame.height / 2 )
+            mMessageView.center = CGPointMake(CGFloat(self.view.frame.size.width / 2),  self.view.frame.size.height - sheet.getFooter() - mMessageView.frame.height / 2 )
         }
         else
         {
@@ -208,7 +208,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, LTBounceSheetDeleg
             mProfileRatingView.hidden = false
             mToggleButton.hidden = true
             shown = true
-            mMessageView.center = CGPointMake(CGFloat(160),  sheet.center.y - sheet.frame.size.height / 2 - mMessageView.frame.height / 2 )
+            mMessageView.center = CGPointMake(CGFloat(self.view.frame.size.width / 2),  sheet.center.y - sheet.frame.size.height / 2 - mMessageView.frame.height / 2 )
         }
     }
     
