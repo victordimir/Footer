@@ -1,0 +1,16 @@
+//
+//  PrefixHeader.pch
+//  Footer
+//
+//  Created by Victor on 20/05/15.
+//
+//
+
+#ifndef Footer_PrefixHeader_pch
+#define Footer_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "AFNetworking_UIKit.h"
+
+#endif
