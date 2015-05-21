@@ -58,7 +58,7 @@
                                         <rect key="frame" x="0.0" y="160" width="320" height="63"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </scrollView>
-                                    <view contentMode="scaleToFill" id="X8n-hz-jry" customClass="JWStarRatingView" customModule="Footer">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" id="X8n-hz-jry" customClass="JWStarRatingView" customModule="Footer">
                                         <rect key="frame" x="89" y="22" width="159" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -18,6 +18,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var shown: Bool = false
     var badgeCount:Int = 10
     var currentSelectedBadgeInd:Int = -1
+    var badgeLabelWidth:CGFloat = 216
+    var badgeWidth:CGFloat = 40
 
     @IBOutlet var mFooterView: UIView!
     @IBOutlet var mProfileImageView:UIImageView!
@@ -35,7 +37,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         for (ind = 0; ind < badgeCount; ind++)
         {
-            var imageView = UIImageView(frame: CGRectMake(0, 0, 40, 40))
+            var imageView = UIImageView(frame: CGRectMake(0, 0, badgeWidth, badgeWidth))
             imageView.tag = ind
             imageView.setImageWithURL(NSURL(string:DUMMYIMG_URL + String(ind + 1) as String))
             imageView.center = CGPointMake(centerX, 30)
@@ -51,6 +53,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             centerX = centerX + 60;
         }
+
+        var label = UILabel(frame: CGRectMake(0, 0, badgeLabelWidth, badgeWidth))
+        label.text = "Extended Badge Comment"
+        label.textAlignment = NSTextAlignment.Left
+        m2ndRowScrView.addSubview(label)
+        label.hidden = true
+        
         m2ndRowScrView.contentSize = CGSizeMake(centerX - 30, m2ndRowScrView.frame.size.height)
     }
     
@@ -62,7 +71,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         for (ind = 0; ind < 5; ind++)
         {
             //            var ratingView = JWStarRatingView()
-            //            ratingView.frame = CGRectMake(0, 0, 120, 40)
+            //            ratingView.frame = CGRectMake(0, 0, 130, 40)
             //            ratingView.center = CGPointMake(centerX, 30)
             //            m3rdRowScrView.addSubview(ratingView)
             
@@ -132,6 +141,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         var imageView:UIImageView = gesture.view as! UIImageView
         var selectedInd:Int = imageView.tag
         
+        var commentLabel = Array(m2ndRowScrView.subviews)[badgeCount] as! UILabel
+        
         var centerX : CGFloat = 30
         var ind:Int = 0
         if currentSelectedBadgeInd == selectedInd
@@ -143,6 +154,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 centerX = centerX + 60
             }
             
+            commentLabel.hidden = true
+            
             currentSelectedBadgeInd = -1
         }
         else
@@ -151,14 +164,18 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             {
                 var subView:UIImageView = Array(m2ndRowScrView.subviews)[ind] as! UIImageView
                 subView.center = CGPointMake(centerX, 30)
-                centerX = centerX + 60
-                
+
                 if ind == selectedInd
                 {
-                    centerX = centerX + 120
+                    commentLabel.center = CGPointMake(centerX + badgeLabelWidth / 2 + badgeWidth / 2 + 10, 30)
+                    centerX = centerX + badgeLabelWidth
                 }
+                
+                centerX = centerX + 60
             }
             
+            commentLabel.hidden = false
+
             currentSelectedBadgeInd = selectedInd
         }
         
