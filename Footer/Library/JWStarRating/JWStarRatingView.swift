@@ -32,6 +32,18 @@ import UIKit
     }
     #endif
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        let starRating = JWStarRating(frame: frame, starCount: self.starCount, starColor: self.starColor, starHighlightColor: self.starHighlightColor, spaceBetweenStar: self.spaceBetweenStar)
+        starRating.addTarget(self, action: "valueChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        addSubview(starRating)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     func valueChanged(starRating:JWStarRating){
         // Do something with the value...
         println("Value changed \(starRating.ratedStarIndex)")

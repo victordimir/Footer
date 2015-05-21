@@ -70,13 +70,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         var ind:Int = 0
         for (ind = 0; ind < 5; ind++)
         {
-            //            var ratingView = JWStarRatingView()
-            //            ratingView.frame = CGRectMake(0, 0, 130, 40)
-            //            ratingView.center = CGPointMake(centerX, 30)
-            //            m3rdRowScrView.addSubview(ratingView)
+            var ratingView:JWStarRatingView = JWStarRatingView(frame: CGRectMake(0, 0, 128, 30))
+            ratingView.center = CGPointMake(centerX, 20)
+            ratingView.userInteractionEnabled = false
+            m3rdRowScrView.addSubview(ratingView)
             
             var label = UILabel(frame: CGRectMake(0, 0, m3rdRowScrView.frame.size.width, m3rdRowScrView.frame.size.height))
-            label.center = CGPointMake(centerX, m3rdRowScrView.frame.size.height / 2)
+            label.center = CGPointMake(centerX, 50)
             label.text = "This is Comment" + String(ind + 1)
             label.textAlignment = NSTextAlignment.Center
             m3rdRowScrView.addSubview(label)
@@ -167,6 +167,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
                 if ind == selectedInd
                 {
+                    m2ndRowScrView.contentOffset = CGPointMake(subView.center.x - badgeWidth / 2 - 10, 0)
+
                     commentLabel.center = CGPointMake(centerX + badgeLabelWidth / 2 + badgeWidth / 2 + 10, 30)
                     centerX = centerX + badgeLabelWidth
                 }
