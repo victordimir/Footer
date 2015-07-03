@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Footer
-//
-//  Created by Victor on 20/05/15.
-//
-//
-
 import UIKit
 
 let SHEET_COLOR = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
