@@ -6,6 +6,16 @@
 //
 //
 
+
+//
+//  ViewController.swift
+//  Footer
+//
+//  Created by Victor on 20/05/15.
+//
+//
+
+
 import UIKit
 
 @UIApplicationMain
